@@ -1,16 +1,15 @@
 "use client"; // Ensure this component is marked as a Client Component
 
 import Image from 'next/image';
-import React, { useEffect, useRef } from 'react'
-import menus from '../images/menus.jpg'
+import React, { useEffect, useRef } from 'react';
+import menus from '../images/menus.jpg';
 import Lottie from 'lottie-react';
-import animationData from '../images/zero.json'
+import animationData from '../images/zero.json';
 import LinkedinIcon from '../images/linkedin-dark.svg';
 import TwitterIcon from '../images/twitter-dark.svg';
 import YoutubeIcon from '../images/yt-dark.svg';
 import GithubIcon from '../images/github-dark.svg';
-import Leetcode from '../images/leetcode.svg'
-
+import Leetcode from '../images/leetcode.svg';
 
 const Section1 = () => {
     const lottieRef = useRef(null);
@@ -36,12 +35,6 @@ const Section1 = () => {
         };
     }, []); // Empty dependency array ensures this effect runs once on mount
 
-    useEffect(() => {
-        if (lottieRef.current) {
-            lottieRef.current.focus(); // Automatically focuses the element
-        }
-    }, []);
-
     const handleDownload = () => {
         const link = document.createElement('a');
         link.href = '/JS_Chapterwise_Notes.pdf'; // Path to your CV file in the public folder
@@ -56,17 +49,15 @@ const Section1 = () => {
                     <Image
                         src={menus}
                         alt="Menu Image"
-                        // layout="responsive"
-                    // width={500}
-                    // height={300}
                     />
                     <div className="menuwrite">
-                        <h1 className="myname hidden">Hey, I'm Hassan Mehmood</h1>
+                        <h1 className="myname hidden">Hey, I&apos;m Hassan Mehmood</h1>
                     </div>
                     <div className="menutext hidden">
                         <p className='menutextp2'>Software Engineer and Trainer</p>
                         <p className='menutextp1'>
-                        As a Software Engineer, I have a multifaceted skill set, specializing in the development of Generative AI solutions (using Python, LLMs, Vectara, and RAG), as well as web (FrontEnd Development). In addition, I have experience as a Tech Trainer, where I guided students at <span className='icodeguru'>ICodeGuru</span>.</p>
+                            As a Software Engineer, I have a multifaceted skill set, specializing in the development of Generative AI solutions (using Python, LLMs, Vectara, and RAG), as well as web (FrontEnd Development). In addition, I have experience as a Tech Trainer, where I guided students at <span className='icodeguru'>ICodeGuru</span>.
+                        </p>
                     </div>
                     <div className="social_icons">
                         <div className="socialicons">
@@ -98,11 +89,12 @@ const Section1 = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div onClick={handleDownload} className="menuButton">
-                        <button> <p>Download CV</p> </button>
+                        <button>
+                            <p>Download CV</p>
+                        </button>
                     </div>
                     <div className='lottie'>
                         <Lottie
@@ -115,12 +107,10 @@ const Section1 = () => {
                     </div>
                 </div>
 
-                <div className="alllinks">
-
-                </div>
+                <div className="alllinks"></div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Section1;
