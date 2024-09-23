@@ -44,7 +44,7 @@ const About = () => {
                         <div className="knowme">
                             <h2 className='hidden'>Get To Know Me</h2>
                             <p className='p1 hidden'>
-                                Hello! I'm Hassan,
+                                Hello! I&apos;m Hassan,
                                 <strong className='hidden'> a full-stack software engineer </strong>
                                 from Lahore, PK.
                             </p>
