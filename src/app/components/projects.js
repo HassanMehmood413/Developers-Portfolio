@@ -45,7 +45,7 @@ const Projects = () => {
             id: 'restaurant',
             image: Portfolio,
             title: 'Portfolio',
-            description: 'This is my portfolio which I have build using Html , Css , Bootstrap , Javascript , Next Js.',
+            description: 'This is my portfolio which I have build using Html,Css,Bootstrap,Javascript,Next Js.',
             technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript', 'Next Js'],
             modalDescription: 'This is my portfolio which I have build using HTML , CSS , BOOTSTRAP , JAVASCRIPT , NEXT JS.',
             codeLink: 'link-to-restaurant-code'
@@ -63,7 +63,7 @@ const Projects = () => {
             id: 'spotify',
             image: spotify,
             title: 'Spotify Clone',
-            description: 'This is the Spotify Clone Website that I have made using Html , Css , Bootstrap ,  Javascript....',
+            description: 'This is the Spotify Clone Website that I have made using Html,Css,....',
             technologies: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
             modalDescription: 'This is the Spotify Clone Website that I have made using Html , Css , Bootstrap ,  Javascript. I have build this website so i can practice my website skills. I have used animations , transitions, beautiful UI in this website',
             codeLink: 'link-to-dance-code'
@@ -72,7 +72,7 @@ const Projects = () => {
             id: 'articlesift',
             image: article,
             title: 'ArticleSift',
-            description: 'ArticleSift is a Streamlit application designed to help users fetch news articles..',
+            description: 'ArticleSift is a Streamlit application designed to help users...',
             technologies: ['Llama 3.1', 'Google API', 'Streamlit', 'Language Translator'],
             modalDescription: 'ArticleSift is a Streamlit application designed to help users fetch news articles, ask questions about them, and listen to audio versions of the content. It supports multiple languages and includes custom styling to enhance user experience.The backend is built using Streamlit and provides endpoints for fetching articles using a URL or title provided by the user, answering questions related to the article, and generating audio in various languages. The app enables users to fetch and process news articles either by URL or title. The backend then parses the article and handles tasks such as translating the content into different languages if needed. ',
             codeLink: 'link-to-articlesift-code'
@@ -96,7 +96,7 @@ const Projects = () => {
             id: 'spotify',
             image: techease,
             title: 'Tech Ease',
-            description: 'Tech Ease is a Streamlit application designed to assist users with solutions for electronic devices...',
+            description: 'Tech Ease is a Streamlit application designed to assist users with...',
             technologies: ['Granite Model', 'IBM Watsonax API', 'Streamlit', 'Google API', 'Summarizer'],
             modalDescription: 'Tech Ease is a Streamlit application designed to assist users with solutions for electronic device and mobile phone issues. By inputting a description of their problem, users receive AI-generated solutions, which can be translated into different languages, summarized, or used to find related articles. This application leverages IBM Watsonx AI for generating solutions and Google Custom Search API for retrieving relevant articles. The translation feature uses Google Translate.',
             codeLink: 'link-to-techease-code'
