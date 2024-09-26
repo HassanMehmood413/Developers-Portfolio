@@ -524,6 +524,8 @@
 }
 
 
+
+
 @media (max-width:460px) {
     .img img {
         height: 50px;
@@ -556,6 +558,101 @@
 
 }
 
+@media (max-width:430px) {
+    .img img {
+        height: 50px;
+        width: 50px;
+        margin-left: 17px;
+        margin-top: 17px;
+    }
+
+    .skills {
+        display: flex;
+        flex-wrap: wrap;
+        width: 118%;
+    }
+
+    .gridcolumn {
+        grid-template-columns: 1fr;
+        grid-gap: 2rem;
+        margin-left: 45px;
+        margin-right: 54px;
+    }
+
+    .menuButton button {
+        margin-top: 133%;
+    }
+
+    .mainprojects {
+        margin-top: 98%;
+    }
+
+    .skills__skill {
+        padding: 0.5rem 1.2rem;
+    }
+
+    .contact__form-container {
+        left: 12%;
+        max-width: 18rem;
+    }
+
+    .contact .contacttitle {
+        left: 22%;
+        font-size: 2rem;
+    }
+
+    .contact__form-container button {
+        margin-left: 50%;
+    }
+
+    .view_button button {
+        left: 68%;
+
+    }
+
+    .img span {
+        margin: auto 12px;
+        font-size: 0.9rem;
+    }
+
+    .menutext .menutextp1 {
+        font-size: 1rem;
+        margin-top: -75px;
+        width: 72%;
+        margin-left: -7%;
+    }
+
+    .options .bar {
+        margin-top: -6px;
+    }
+
+    .fixed-sidebar {
+        width: 74%;
+
+    }
+
+    .nft {
+        max-width: 301px;
+        height: 427px;
+        margin: 20px 29px;
+    }
+
+    .nft .main .tokenImage {
+        border-radius: .5rem;
+        max-width: 100%;
+        height: 153px;
+        object-fit: fill;
+    }
+
+    .contact__form-field textarea {
+        padding: 14px 22px;
+    }
+
+    .contact__form-field input {
+        padding: 8px 54px;
+    }
+
+}
 
 @media (max-width:370px) {
     .contactbottom {
@@ -590,14 +687,14 @@
     .nft .main .tokenImage {
         border-radius: .5rem;
         max-width: 100%;
-        height: 162px;
+        height: 153px;
         object-fit: fill;
     }
 
     .nft {
-        max-width: 323px;
-        margin: 24px 29px;
-        height: 433px;
+        max-width: 301px;
+        height: 427px;
+        margin: 20px 29px;
     }
 
     .mainprojects {

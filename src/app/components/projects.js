@@ -106,7 +106,7 @@ const Projects = () => {
 
     return (
         <div>
-            <div className="mainprojects" >
+            <div className="mainprojects" id='projects' >
                 <p className='titleproject' >Projects</p>
                 <div className="bottomline2"></div>
                 <span className="myprojects" style={{ color: '#7B7B7B' }}>

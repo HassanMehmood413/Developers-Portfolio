@@ -35,7 +35,7 @@ const Navbar = () => {
                         <Link onClick={closesidebar} className='closebar' href="#"><li ><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#00b4d8"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></li></Link>
                         <li><Link href="/">Home</Link></li>
                         <li><Link href="#about">About</Link></li>
-                        <li><Link href="/projects">Projects</Link></li>
+                        <li><Link href="#projects">Projects</Link></li>
                         <li><Link href="/about">Contact</Link></li>
                     </ul>
                 </div>
@@ -44,7 +44,7 @@ const Navbar = () => {
                     <ul>
                         <li className='hideonmobile'><Link href="/">Home</Link></li>
                         <li className='hideonmobile'><Link href="#about">About</Link></li>
-                        <li className='hideonmobile'><Link href="/projects">Projects</Link></li>
+                        <li className='hideonmobile'><Link href="#projects">Projects</Link></li>
                         <li className='hideonmobile'><Link href="/about">Contact</Link></li>
 
 
