@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { FiCode, FiExternalLink, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useTheme } from 'next-themes';
@@ -115,7 +116,7 @@ const Projects = () => {
             image: aipost,
             title: 'AI Post Creator',
             description: 'AI-powered analysis, content generation, and audio conversion using Crew AI.',
-            technologies: ['Serper API', 'Streamlit','Browserless API', 'Crew AI', 'Multi-Agent System'],
+            technologies: ['Serper API', 'Streamlit', 'Browserless API', 'Crew AI', 'Multi-Agent System'],
             modalDescription: 'AI Post Creator is a Streamlit-powered application that uses Agentic Workflow (Crew AI) to make users posts by asking the targeted audiance, platform, tone of the posts and many other things. Furthurmore , user can also check whether the provided news is fake or not.',
             codeLink: 'https://github.com/yourusername/articlesift',
             liveLink: 'https://ai-post-creator2-btaji.streamlit.app/',
@@ -128,7 +129,7 @@ const Projects = () => {
             ],
             challenges: 'Integrating Crew AIs multi-agent framework while ensuring accurate and efficient content validation.',
             lessons: 'Learned to implement Crew AI for multi-agent automation, improving AI-driven content workflows and accuracy in fact-checking.'
-        },        
+        },
         {
             id: 'feelbetter',
             image: Feelbetter,
@@ -136,7 +137,7 @@ const Projects = () => {
             description: 'AI-powered emotional analysis for text, emails, articles, and audio.',
             technologies: [
                 'Streamlit', 'Pandas', 'NumPy', 'Google API', 'Together API',
-                 'ML',  'SoundDevice', 'Streamlit Mic Recorder'
+                'ML', 'SoundDevice', 'Streamlit Mic Recorder'
             ],
             modalDescription: 'FeelBetter Buddy is a web app that analyzes emotional tone in text, emails, articles, and speech. Using AI models, it provides insights into emotional context and generates empathetic responses, enhancing communication understanding.',
             codeLink: 'https://github.com/yourusername/feelbetter-buddy',
@@ -159,7 +160,7 @@ const Projects = () => {
             title: 'Malama AI',
             description: 'AI-powered skin disease recognition using advanced machine learning models.',
             technologies: [
-                'LLM 3.370b', 'Dinov2', 'Next.js', 'Flask', 
+                'LLM 3.370b', 'Dinov2', 'Next.js', 'Flask',
                 'Tailwind CSS', 'PostgreSQL'
             ],
             modalDescription: 'Malama AI is a machine learning-powered application for recognizing various skin diseases. Built with Next.js for an interactive frontend and Flask for a scalable backend, it leverages the LLM 3.370b model fine-tuned on Dinov2 for improved accuracy.',
@@ -173,7 +174,7 @@ const Projects = () => {
             ],
             challenges: 'Optimizing the models accuracy and ensuring seamless integration between the frontend and backend.',
             lessons: 'Gained experience in AI model deployment, full-stack development, and optimizing ML models for real-world applications.'
-        },        
+        },
     ];
 
     return (
@@ -205,8 +206,12 @@ const Projects = () => {
                             onClick={() => openModal(project, index)}
                         >
                             <div className="project-image">
-                                <Image src={project.image || "/placeholder.svg"} alt={project.title} layout="fill" objectFit="cover" />
-                            </div>
+                                <Image
+                                    src={project.image || "/placeholder.svg"}
+                                    alt={project.title}
+                                    fill
+                                    style={{ objectFit: "cover" }}
+                                />                            </div>
                             <div className="project-overlay">
                                 <h3>{project.title}</h3>
                                 <p>{project.description}</p>
@@ -240,7 +245,12 @@ const Projects = () => {
                                 <FiX />
                             </button>
                             <div className="modal-image-container">
-                                <Image src={modalContent.image || "/placeholder.svg"} alt={modalContent.title} layout="fill" objectFit="fill" />
+                                <Image
+                                    src={modalContent.image || "/placeholder.svg"}
+                                    alt={modalContent.title}
+                                    fill
+                                    style={{ objectFit: "cover" }}
+                                />
                                 <button className="nav-button prev" onClick={prevProject}>
                                     <FiChevronLeft />
                                 </button>
