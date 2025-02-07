@@ -30,7 +30,7 @@ const Experience = () => {
             "role": "Hackathon Participant",
             "period": "October 2024 - Present",
             "description": "An incredible experience participating in a hackathon organized by Major League Hacking (MLH), one of the most prestigious and well-known hackathon organizations. Our team consists of four international members collaborating on an innovative STEM project. We are leveraging cutting-edge technologies to develop a solution that addresses real-world challenges, emphasizing creativity, teamwork, and technical excellence.",
-            "name": "Click here to learn more:",
+            "name": "Click here to know more:",
             "link": "https://www.linkedin.com/posts/hassan-mehmood-01a3a9247_%F0%9D%90%80-%F0%9D%90%A9%F0%9D%90%A5%F0%9D%90%9A%F0%9D%90%AD%F0%9D%90%9F%F0%9D%90%A8%F0%9D%90%AB%F0%9D%90%A6-%F0%9D%90%B0%F0%9D%90%A1%F0%9D%90%9E%F0%9D%90%AB%F0%9D%90%9E-%F0%9D%90%B2%F0%9D%90%A8%F0%9D%90%AE-%F0%9D%90%9C%F0%9D%90%9A%F0%9D%90%A7-activity-7261246314443636736-dsMJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD0autYBDWMLUgrU35ZTKZlWjbKtYVD0RLw",
             "color": "#50E3C2"
         },
