@@ -1,0 +1,123 @@
+.lottie {
+  width: 23px;
+  height: 66px;
+  position: absolute;
+  top: 90%;
+}
+
+
+/* Background Menu images */
+.backgroundimage .image img {
+  height: 1000px;
+  width: 100%;
+  position: relative;
+  opacity: 0.8;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.menuwrite {
+  position: absolute;
+  top: 45%;
+  left: 41%;
+  transform: translate(-50%, -145%);
+  text-align: center;
+}
+
+
+.myname {
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  width: 134%;
+  text-align: center;
+  color: #111;
+  font-weight: 800;
+}
+
+
+.menutext .menutextp1 {
+  position: absolute;
+  left: 50%;
+  color: #333;
+  transform: translateX(-50%);
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 1.4rem;
+  text-align: center;
+  width: 73%;
+  line-height: 1.6;
+  margin-top: -54px;
+
+}
+
+.menutext .menutextp1 span {
+  color: rgb(2 167 167);
+  --tw-text-opacity: 1;
+}
+
+.menutext .menutextp2 {
+  position: absolute;
+  left: 22%;
+  color: #333;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 1.8rem;
+  text-align: center;
+  width: 56%;
+  line-height: 1.6;
+  margin-top: -125px;
+}
+
+.menuButton {
+  position: absolute;
+  margin-top: 32%;
+  display: flex;
+  /* Use flexbox to make the content expand properly */
+  align-items: center;
+  /* Center the text vertically */
+  justify-content: center;
+  font-family: "Source Sans 3", sans-serif;
+}
+
+.menuButton button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  padding: 10px 58px;
+  font-weight: 700;
+  font-family: "Source Sans 3", sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: #00b4d8;
+  color: white;
+  border: none;
+  margin-bottom: 0%;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 3px;
+
+}
+
+.menuButton button:hover {
+  transform: translateY(-5px);
+}
+
+.gif img {
+  height: 32%;
+  position: absolute;
+  right: 0;
+  width: 18%;
+  filter: invert();
+  background: grey;
+  left: 41%;
+  top: 77%;
+}

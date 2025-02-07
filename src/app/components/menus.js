@@ -10,6 +10,10 @@ import TwitterIcon from '../images/twitter-dark.svg';
 import YoutubeIcon from '../images/yt-dark.svg';
 import GithubIcon from '../images/github-dark.svg';
 import Leetcode from '../images/leetcode.svg';
+import '@/app/styles/menu.css'
+import '@/app/index.css'
+
+
 
 const Section1 = () => {
     const lottieRef = useRef(null);
@@ -37,7 +41,7 @@ const Section1 = () => {
 
     const handleDownload = () => {
         const link = document.createElement('a');
-        link.href = '/JS_Chapterwise_Notes.pdf'; // Path to your CV file in the public folder
+        link.href = 'https://drive.google.com/file/d/1zHp2yvoga2i453E5CDjTeS_Kl7mBK1eL/view?usp=sharing'; // Path to your CV file in the public folder
         link.download = 'My_CV.pdf'; // The name of the file that will be downloaded
         link.click();
     };
@@ -53,12 +57,18 @@ const Section1 = () => {
                     <div className="menuwrite">
                         <h1 className="myname hidden">Hey, I&apos;m Hassan Mehmood</h1>
                     </div>
-                    <div className="menutext hidden">
-                        <p className='menutextp2'>Software Engineer and Trainer</p>
-                        <p className='menutextp1'>
-                            As a Software Engineer, I have a multifaceted skill set, specializing in the development of Generative AI solutions (using Python, LLMs, Vectara, and RAG), as well as web (FrontEnd Development). In addition, I have experience as a Tech Trainer, where I guided students at <span className='icodeguru'>ICodeGuru</span>.
+                    <div className="menutext hidden bg-gray-100 p-4 rounded-lg shadow-lg">
+                        <p className='menutextp2 text-xl font-bold text-blue-800 mb-2'>
+                            Software Engineer and Trainer
+                        </p>
+                        <p className='menutextp1 text-sm text-gray-700 leading-relaxed'>
+                            As a Software Engineer, I possess a diverse and highly specialized skill set, with expertise in developing&nbsp;
+                            <strong>Generative AI</strong> & <strong>Multi-Agent Applications</strong> using <strong>Python, Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), LangGraph, and CrewAI</strong>. Additionally, I have a strong background in&nbsp;
+                            <strong>Web Development</strong>, where I design and build dynamic, user-centric applications with a focus on performance and scalability.
+                            Beyond development, I have also contributed as a <strong>Tech Trainer</strong>, mentoring and guiding students at <span className='icodeguru text-indigo-600 font-semibold'>ICodeGuru</span>, empowering them to strengthen their technical acumen and problem-solving abilities.
                         </p>
                     </div>
+
                     <div className="social_icons">
                         <div className="socialicons">
                             <div className="home-hero__socials">

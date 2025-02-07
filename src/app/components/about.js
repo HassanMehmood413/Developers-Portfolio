@@ -1,96 +1,158 @@
-"use client";
-import React, { useEffect } from 'react';
+'use client';
 
-const About = () => {
-    const handleContactClick = () => {
-        window.location.href = 'https://mail.google.com/mail/?view=cm&to=ihassan463m@gmail.com';
-    };
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { FaBriefcase, FaCalendar, FaChevronDown, FaChevronUp, FaStar, FaCode } from 'react-icons/fa';
+import '@/app/styles/About.css';
+
+const Experience = () => {
+    const experiences = [
+        {
+            company: "ICodeGuru",
+            role: "Tech Trainer",
+            period: "Jan 2022 - Present",
+            description: "As a Tech Trainer at ICodeGuru, I specialize in guiding aspiring developers through the intricacies of Data Structures and Algorithms (DSA). My role involves breaking down complex programming concepts into digestible, practical knowledge.\nOrganized different sessions of DSA to teach underprevilidge students\n",
+            name: 'Check My Sessions:',
+            link: 'https://github.com/HassanMehmood413/My_All_Lectures-ICodeGuru-',
+            color: "#4A90E2"
+        },
+        {
+            company: "Lablab.ai",
+            role: "Hackathon Participant",
+            period: "Multiple events (2024 - Present)",
+            description: "At Lablab.ai hackathons, I've had the opportunity to work on cutting-edge AI projects, collaborating with diverse international teams to solve real-world problems using the latest in artificial intelligence and machine learning.",
+            name: 'Check my Lablab.ai Profile',
+            link: 'https://lablab.ai/u/@hassan_mehmood517',
+            color: "#FF6B6B"
+        },
+        {
+            "company": "Major League Hacking (MLH)",
+            "role": "Hackathon Participant",
+            "period": "October 2024 - Present",
+            "description": "An incredible experience participating in a hackathon organized by Major League Hacking (MLH), one of the most prestigious and well-known hackathon organizations. Our team consists of four international members collaborating on an innovative STEM project. We are leveraging cutting-edge technologies to develop a solution that addresses real-world challenges, emphasizing creativity, teamwork, and technical excellence.",
+            "name": "Click here to learn more:",
+            "link": "https://www.linkedin.com/posts/hassan-mehmood-01a3a9247_%F0%9D%90%80-%F0%9D%90%A9%F0%9D%90%A5%F0%9D%90%9A%F0%9D%90%AD%F0%9D%90%9F%F0%9D%90%A8%F0%9D%90%AB%F0%9D%90%A6-%F0%9D%90%B0%F0%9D%90%A1%F0%9D%90%9E%F0%9D%90%AB%F0%9D%90%9E-%F0%9D%90%B2%F0%9D%90%A8%F0%9D%90%AE-%F0%9D%90%9C%F0%9D%90%9A%F0%9D%90%A7-activity-7261246314443636736-dsMJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD0autYBDWMLUgrU35ZTKZlWjbKtYVD0RLw",
+            "color": "#50E3C2"
+        },
+    ];
+
+    const [expandedIndex, setExpandedIndex] = useState(null);
+    const [isInView, setIsInView] = useState(false);
+    const sectionRef = useRef(null);
+
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"]
+    });
+
+    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
 
     useEffect(() => {
-        // Intersection Observer Setup
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                } else {
-                    entry.target.classList.remove('show');
+                    setIsInView(true);
+                    observer.unobserve(entry.target);
                 }
-            });
-        });
+            },
+            { threshold: 0.1 }
+        );
 
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => observer.observe(el));
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
 
-        // Cleanup observer on component unmount
         return () => {
-            hiddenElements.forEach((el) => observer.unobserve(el));
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
         };
-    }, []); // Empty dependency array ensures this effect runs once on mount
+    }, []);
+
+    const toggleExpand = (index) => {
+        setExpandedIndex(expandedIndex === index ? null : index);
+    };
+
+    // Directly use the experiences array since filtering is removed
+    const displayedExperiences = experiences;
 
     return (
-        <div>
-            <div className="maincontainer" id='about'>
+        <motion.section
+            ref={sectionRef}
+            className="experience-section"
+            style={{ opacity, scale }}
+        >
+            <div className="container" id='Experience'>
+                <h2 className="section-title">Professional Experience</h2>
+                {/* Removed the search bar */}
+                <div className="experience-grid">
+                    <AnimatePresence>
+                        {displayedExperiences.map((exp, index) => (
+                            <motion.div
+                                key={exp.company}
+                                className="experience-card"
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                exit={{ opacity: 0, y: -50 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                style={{
+                                    '--card-color': exp.color,
+                                    '--card-color-light': `${exp.color}22`
+                                }}
+                            >
+                                <div className="card-header">
+                                    {exp.logo && (
+                                        <img src={exp.logo || "/placeholder.svg"} alt={`${exp.company} logo`} className="company-logo" />
+                                    )}
+                                    <h3 className="company-name">{exp.company}</h3>
+                                    <h4 className="role-title">{exp.role}</h4>
+                                    <p className="period">
+                                        <FaCalendar className="icon" /> {exp.period}
+                                    </p>
+                                </div>
+                                <p className="description">{exp.description}</p>
+                                <motion.div
+                                    className="expandable-content"
+                                    initial={false}
+                                    animate={{ height: expandedIndex === index ? 'auto' : 0 }}
+                                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                >
+                                    <div className="technologies">
+                                        <h5 className="flex items-center text-lg font-semibold text-gray-800">
+                                            <FaCode className="section-icon mr-2 text-blue-600" /> {exp.name}
+                                        </h5>
+                                        <div className="tech-tags mt-2">
+                                            <a
+                                                href={exp.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+                                            >
+                                                Check Here
+                                            </a>
+                                        </div>
+                                    </div>
 
-                <div className="aboutme hidden">
-                    <h1>About Me</h1>
-                    <div className="bottomline"></div>
-                    <div className="para">
-                        <p>Here you will find more information about me, what I do, and my current skills mostly in terms of programming and technology.</p>
-                    </div>
+                                </motion.div>
+                                <button className="expand-button" onClick={() => toggleExpand(index)}>
+                                    {expandedIndex === index ? (
+                                        <>
+                                            <FaChevronUp className="icon" /> Show Less
+                                        </>
+                                    ) : (
+                                        <>
+                                            <FaChevronDown className="icon" /> Show More
+                                        </>
+                                    )}
+                                </button>
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
                 </div>
-
-                <div className="gridcolumn hidden">
-                    <div className="onecolumn">
-                        <div className="knowme">
-                            <h2 className='hidden'>Get To Know Me</h2>
-                            <p className='p1 hidden'>
-                                Hello! I&apos;m Hassan,
-                                <strong className='hidden'> a full-stack software engineer </strong>
-                                from Lahore, PK.
-                            </p>
-
-                            <p className='p2 hidden'>
-                                As a Software Engineer, I have a multifaceted skill set, specializing in the development of Generative AI solutions (using Python, LLMs, Vectara, and RAG), as well as web (FrontEnd Development). In addition, I have experience as a Tech Trainer, where I guided students at <span>ICodeGuru</span>. I possess a varied background, having contributed to team projects in a professional capacity, competed in global hackathons @<a className='lablab' href="https://lablab.ai/u/@hassan_mehmood517" target='_blank' rel="noopener noreferrer"> Lablab.ai </a>.
-                                As a tech trainer at <a className='lablab' target='_blank' rel="noopener noreferrer"> ICodeGuru </a>, I&apos;ve taught DSA to aspiring students by simplifying complex programming concepts (wanna see how I provide training to my students? <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTIfocJUVuGFBAoDRGEqgNOQD16chYRfjbEXQO9tDJknQx-OYUFfKPtnPKND8mVJZplTbiGFF88LDtW/pubhtml" target='_blank' rel="noopener noreferrer">Click Here</a> to see my sessions).
-                                I have participated in multiple AI International Hackathons.
-                            </p>
-                        </div>
-
-                        <div className="button hidden">
-                            <button onClick={handleContactClick}>Contact Me</button>
-                        </div>
-                    </div>
-
-                    <div className="secondcolumn hidden">
-                        <div className="skills hidden">
-                            <h2>Skills</h2>
-                            <div className="skills hidden">
-                                <div className="skills__skill">Pandas</div>
-                                <div className="skills__skill">Python</div>
-                                <div className="skills__skill">JavaScript</div>
-                                <div className="skills__skill">Typescript</div>
-                                <div className="skills__skill">React Js</div>
-                                <div className="skills__skill">Next Js</div>
-                                <div className="skills__skill">Generative AI</div>
-                                <div className="skills__skill">Machine Learning</div>
-                                <div className="skills__skill">LLMs</div>
-                                <div className="skills__skill">Bootstrap-5</div>
-                                <div className="skills__skill">DSA</div>
-                                <div className="skills__skill">React</div>
-                                <div className="skills__skill">HTML</div>
-                                <div className="skills__skill">CSS</div>
-                                <div className="skills__skill">WordPress</div>
-                                <div className="skills__skill">GIT</div>
-                                <div className="skills__skill">GitHub</div>
-                                <div className="skills__skill">Responsive Design</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </div>
+        </motion.section>
     );
-}
+};
 
-export default About;
+export default Experience;

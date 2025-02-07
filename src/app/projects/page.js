@@ -1,199 +1,253 @@
-"use client";
-import { useEffect, useState } from 'react';
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import Portfolio from '../images/portfolio.png';
-import news from '../images/Newspaper.jpg';
-import dance from '../images/danceacademy.jpg';
-import article from '../images/article.jpg';
-import linkedinjob from '../images/Linkedinjobs.png';
-import techease from "../images/techease.png";
-import spotify from "../images/spotify.png"
-import ranking from '../images/DocumentRanking.jpg'
-import voice from "../images/VoiceGroq.png"
-import nexus from "../images/NewsNexus.png"
-import Footer from '../components/footer';
-
-
-
 import Link from 'next/link';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { FiCode, FiExternalLink, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { useTheme } from 'next-themes';
+import Portfolio from '../images/portfolio.png';
+import spot from '../images/spot.png';
+import article from '../images/article.jpg';
+import Feelbetter from '../images/Feelbetter.png';
+import malama from "../images/malama.png";
+import spotify from "../images/spotify.png";
+import '@/app/styles/project.css';
 
 const Projects = () => {
     const [modalContent, setModalContent] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const { theme, setTheme } = useTheme();
+    const projectsRef = useRef(null);
+    const isInView = useInView(projectsRef, { once: true });
+
+    const openModal = (project, index) => {
+        setModalContent(project);
+        setCurrentIndex(index);
+        setIsModalOpen(true);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        document.body.style.overflow = 'unset';
+    };
+
+    const nextProject = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
+        setModalContent(projects[(currentIndex + 1) % projects.length]);
+    };
+
+    const prevProject = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
+        setModalContent(projects[(currentIndex - 1 + projects.length) % projects.length]);
+    };
 
     useEffect(() => {
-        const modal = document.getElementById('modal');
-        const closeButton = document.getElementById('close');
-
-        const closeModal = () => {
-            modal.style.display = 'none'; // Close the modal
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') closeModal();
+            if (event.key === 'ArrowRight') nextProject();
+            if (event.key === 'ArrowLeft') prevProject();
         };
-
-        closeButton.onclick = closeModal;
-
-        window.onclick = function (event) {
-            if (event.target === modal) {
-                closeModal(); // Close the modal if clicked outside
-            }
-        };
-
-        return () => {
-            closeButton.onclick = null;
-            window.onclick = null;
-        };
-    }, []);
-
-    const openModal = (project) => {
-        setModalContent(project);
-        document.getElementById('modal').style.display = 'block'; // Show the modal
-    };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [closeModal, nextProject, prevProject]); // Added dependencies
 
     const projects = [
         {
-            id: 'restaurant',
+            id: 'portfolio',
             image: Portfolio,
             title: 'Portfolio',
-            description: 'This is my portfolio which I have build using Html , Css , Bootstrap , Javascript , Next Js.',
-            technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript', 'Next Js'],
-            modalDescription: 'This is my portfolio which I have build using HTML , CSS , BOOTSTRAP , JAVASCRIPT , NEXT JS.',
-            codeLink: 'link-to-restaurant-code'
+            description: 'My personal portfolio showcasing my skills and projects.',
+            technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript', 'Next.js'],
+            modalDescription: 'This is my portfolio which I have built using HTML, CSS, Bootstrap, JavaScript, and Next.js. It showcases my skills, projects, and experiences in web development.',
+            codeLink: 'https://github.com/yourusername/portfolio',
+            liveLink: 'https://yourportfolio.com',
+            features: ['Responsive design', 'Dark mode', 'Project showcase', 'Contact form'],
+            challenges: 'Implementing a seamless dark mode transition and ensuring cross-browser compatibility.',
+            lessons: 'Improved my skills in Next.js and learned about advanced CSS techniques for creating engaging user interfaces.'
         },
         {
             id: 'blog',
-            image: news,
+            image: spot,
             title: 'Blog Website',
-            description: 'My blog website where you can get latest blogs, news about different ...',
+            description: 'A blog platform for sharing the latest news and articles.',
             technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript'],
-            modalDescription: 'My blog website where you can get latest blogs, news about different fields. I build this blog when I am learning web development. I build it using Html , Css , Javascript , Bootstrap',
-            codeLink: 'link-to-blog-code'
+            modalDescription: 'My blog website where you can get the latest blogs and news about different fields. I built this blog while learning web development, using HTML, CSS, JavaScript, and Bootstrap.',
+            codeLink: 'https://github.com/yourusername/blog-website',
+            liveLink: 'https://yourblogwebsite.com',
+            features: ['Responsive layout', 'Category filtering', 'Search functionality', 'Comment system'],
+            challenges: 'Implementing a robust comment system and optimizing image loading for faster page speeds.',
+            lessons: 'Gained experience in building interactive web applications and improved my understanding of web performance optimization.'
         },
         {
-            id: 'techease',
+            id: 'spotify',
             image: spotify,
             title: 'Spotify Clone',
-            description: 'A Music App similar to spotify. I made this clone using Html, Css , Javascript and Bootstrap.....',
-            technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript'],
-            modalDescription: 'A Music App similar to spotify. I made this clone using Html, Css , Javascript and Bootstrap. I also add different functionalities like managing the sound and slider using timer and also add different musics. The app looks almost same like spotify in ui and different things. ',
-            codeLink: 'link-to-techease-code'
+            description: 'A Spotify-inspired music player with a sleek interface.',
+            technologies: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+            modalDescription: 'This is a Spotify Clone Website that I have made using HTML, CSS, Bootstrap, and JavaScript. I built this website to practice my web development skills, incorporating animations, transitions, and a beautiful UI.',
+            codeLink: 'https://github.com/yourusername/spotify-clone',
+            liveLink: 'https://yourspotifyclone.com',
+            features: ['Music playback', 'Playlist management', 'User authentication', 'Responsive design'],
+            challenges: 'Implementing the audio player functionality and syncing it with the user interface.',
+            lessons: 'Deepened my understanding of working with audio in web applications and improved my skills in creating complex user interfaces.'
         },
-        {
-            id: 'dance',
-            image: dance,
-            title: 'Dance Website',
-            description: 'This is the Dance Website I have made using Html , Css , Bootstrap..',
-            technologies: ['HTML', 'CSS', 'JavaScript', 'Pug', 'Node', 'Express'],
-            modalDescription: 'This is the Dance Website I have made using Html , Css , Bootstrap ,  Javascript , Node Js , Express Js. I have build this website so i can practice my website skills. I have used animations , transitions, beautiful UI in this website',
-            codeLink: 'link-to-dance-code'
-        },
-
         {
             id: 'articlesift',
             image: article,
             title: 'ArticleSift',
-            description: 'ArticleSift is a Streamlit application designed to help users fetch news articles..',
+            description: 'An AI-powered article analysis and audio generation tool.',
             technologies: ['Llama 3.1', 'Google API', 'Streamlit', 'Language Translator'],
-            modalDescription: 'ArticleSift is a Streamlit application designed to help users fetch news articles, ask questions about them, and listen to audio versions of the content. It supports multiple languages and includes custom styling to enhance user experience.The backend is built using Streamlit and provides endpoints for fetching articles using a URL or title provided by the user, answering questions related to the article, and generating audio in various languages. The app enables users to fetch and process news articles either by URL or title. The backend then parses the article and handles tasks such as translating the content into different languages if needed. ',
-            codeLink: 'link-to-articlesift-code'
+            modalDescription: 'ArticleSift is a Streamlit application designed to help users fetch news articles, ask questions about them, and listen to audio versions of the content. It supports multiple languages and includes custom styling to enhance user experience.',
+            codeLink: 'https://github.com/yourusername/articlesift',
+            liveLink: 'https://articlesift.streamlit.app',
+            features: ['Article fetching', 'AI-powered Q&A', 'Multi-language support', 'Text-to-speech conversion'],
+            challenges: 'Integrating multiple APIs and ensuring smooth functionality across different languages.',
+            lessons: 'Gained valuable experience in working with AI models and improved my skills in building data-driven web applications.'
         },
         {
             id: 'techjobs',
-            image: linkedinjob,
+            image: Feelbetter,
             title: 'Tech Jobs Recommender',
-            description: 'This Streamlit app provides job recommendations based on job titles...',
+            description: 'AI-powered job recommendations and search platform.',
             technologies: ['Llama 3.1', 'AI/ML API', 'Google API', 'CSV', 'Streamlit', 'Pandas'],
-            modalDescription: `
-            This Streamlit app provides job recommendations based on job titles, job description summarization using LLaMA, 
-            translation of job descriptions, and job search functionality via Google Custom Search API. It also supports 
-            LinkedIn job searches and text-to-speech synthesis.
-            The backend is built using Streamlit and provides endpoints for searching jobs according to the input provided by the user 
-            and also gives recommendations for different jobs by selecting the job with detailed descriptions. Furthermore, you can 
-            also search for different latest articles and news about the available jobs in different locations just by giving the location.
-        `, codeLink: 'link-to-techjobs-code'
+            modalDescription: 'This Streamlit app provides job recommendations based on job titles, job description summarization using LLaMA, translation of job descriptions, and job search functionality via Google Custom Search API.',
+            codeLink: 'https://github.com/yourusername/tech-jobs-recommender',
+            liveLink: 'https://techjobsrecommender.streamlit.app',
+            features: ['Job recommendations', 'Description summarization', 'Multi-language support', 'Custom job search'],
+            challenges: 'Developing accurate recommendation algorithms and handling large datasets efficiently.',
+            lessons: 'Improved my skills in data analysis and machine learning, and learned about building recommendation systems.'
         },
         {
             id: 'techease',
-            image: techease,
+            image: malama,
             title: 'Tech Ease',
-            description: 'Tech Ease is a Streamlit application designed to assist users with solutions for electronic devices...',
+            description: 'AI assistant for solving tech and mobile device issues.',
             technologies: ['Granite Model', 'IBM Watsonax API', 'Streamlit', 'Google API', 'Summarizer'],
-            modalDescription: 'Tech Ease is a Streamlit application designed to assist users with solutions for electronic device and mobile phone issues. By inputting a description of their problem, users receive AI-generated solutions, which can be translated into different languages, summarized, or used to find related articles. This application leverages IBM Watsonx AI for generating solutions and Google Custom Search API for retrieving relevant articles. The translation feature uses Google Translate.',
-            codeLink: 'link-to-techease-code'
+            modalDescription: 'Tech Ease is a Streamlit application designed to assist users with solutions for electronic device and mobile phone issues. By inputting a description of their problem, users receive AI-generated solutions.',
+            codeLink: 'https://github.com/yourusername/tech-ease',
+            liveLink: 'https://techease.streamlit.app',
+            features: ['AI-powered problem solving', 'Multi-language support', 'Solution summarization', 'Related article search'],
+            challenges: 'Ensuring accurate and helpful AI-generated solutions and integrating multiple APIs seamlessly.',
+            lessons: 'Gained experience in working with advanced AI models and improved my skills in creating user-friendly interfaces for complex applications.'
         },
-        {
-            id: 'techease',
-            image: ranking,
-            title: 'Document Ranking ',
-            description: 'This code is a Streamlit-based application for document ranking using the Together API. The application...',
-            technologies: ['Salesforce/Llama-Rank-V1', 'Together AI', 'Streamlit', 'Together API'],
-            modalDescription: 'This code is a Streamlit-based application for document ranking using the Together API. The application allows users to input a query, upload documents from files, choose the number of top results to return, select a ranking model, and view the ranked results. Users can also save these results to a file in their preferred format. The code provides a simple interface to interact with a ranking model for information retrieval and relevance scoring.',
-            codeLink: 'link-to-techease-code'
-        },
-        {
-            id: 'techease',
-            image: voice,
-            title: 'Voice To Voice',
-            description: 'This code creates a Gradio-based web interface that allows users to upload an audio file, transcribe...',
-            technologies: ["Groq", "Whisper", "Llama 8b", "Gradio", 'Gtts', ' Groq API'],
-            modalDescription: 'This code creates a Gradio-based web interface that allows users to upload an audio file, transcribe it using OpenAI Whisper model, generate a response using the Groq API, and then convert the response into speech using Google Text-to-Speech (gTTS). The resulting text and audio are then returned to the user. The main purpose of this application is to provide a seamless workflow for converting spoken content into text, generating a response using an AI model, and converting the AI response back into audio.',
-            codeLink: 'link-to-techease-code'
-        },
-        {
-            id: 'techease',
-            image: nexus,
-            title: 'NewsNexus',
-            description: 'The Personalized News Generator is a Streamlit application designed to help users fetch news articles....',
-            technologies: ["Groq", "Whisper", "Llama 8b", "Gradio", 'Gtts', ' Groq API'],
-            modalDescription: 'The Personalized News Generator is a Streamlit application designed to help users fetch news articles, ask questions about them, get summaries, and listen to audio versions of the content. It supports multiple languages and includes custom styling to enhance user experience.',
-            codeLink: 'link-to-techease-code'
-        },
-
     ];
 
     return (
-        <div>
-            <div className="mainprojects" >
-                <p className='titleproject' >Projects</p>
-                <div className="bottomline2"></div>
-                <span className="myprojects" style={{ color: '#7B7B7B' }}>
-                    Here you will find some of the personal projects that I created during my front-end journey
-                </span>
-
-                <div className="projectlists">
-                    {projects.map(project => (
-                        <div className="nft" key={project.id} onClick={() => openModal(project)}>
-                            <div className="main">
-                                <Image className='tokenImage' src={project.image} alt={project.title} />
-                                <h2 style={{ color: '#ced4da' }}>{project.title}</h2>
-                                <div className="technologies">
-                                    {project.technologies.map(skill => (
-                                        <div className="skill" key={skill}>{skill}</div>
+        <section className="projects" id="projects" ref={projectsRef}>
+            <div className="container">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                    <h2 className="section-title">PROJECTS</h2>
+                    <div className="section-underline"></div>
+                    <p className="section-description">
+                        Here you will find some of the personal projects that I created during my front-end journey
+                    </p>
+                    <Link href="/projects" className="view-all-button">
+                        View All
+                    </Link>
+                </motion.div>
+                <div className="project-grid">
+                    {projects.map((project, index) => (
+                        <motion.div
+                            key={project.id}
+                            className="project-card"
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            whileHover={{ y: -10, boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}
+                            onClick={() => openModal(project, index)}
+                        >
+                            <div className="project-image">
+                                <Image src={project.image || "/placeholder.svg"} alt={project.title} layout="fill" objectFit="cover" />
+                            </div>
+                            <div className="project-overlay">
+                                <h3>{project.title}</h3>
+                                <p>{project.description}</p>
+                                <div className="project-technologies">
+                                    {project.technologies.map((tech, index) => (
+                                        <span key={index} className="tech-tag">{tech}</span>
                                     ))}
                                 </div>
-                                <hr />
-                                <p className='description' style={{ color: 'white' }}>{project.description}</p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
-
-                <div className="modal" id="modal">
-                    <div className="modal-content">
-                        <span className="close" id="close">&times;</span>
-                        {modalContent && (
-                            <>
-                                <Image className='modal-image' src={modalContent.image} alt={modalContent.title} />
-                                <h2 style={{ color: '#ced4da' }}>{modalContent.title}</h2>
-                                <p className='modal-description' style={{ color: '#ced4da' }}>{modalContent.modalDescription}</p>
-                                <hr />
-                                <a href={modalContent.codeLink} className="view-code">View Code</a>
-                                <a href={modalContent.codeLink} className="view-code">View Code</a>
-                            </>
-                        )}
-                    </div>
-                </div>
             </div>
-            <Footer />
-        </div>
-
+            <AnimatePresence>
+                {isModalOpen && modalContent && (
+                    <motion.div
+                        className="modal-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={closeModal}
+                    >
+                        <motion.div
+                            className="modal-content"
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: 50, opacity: 0 }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button className="close-button" onClick={closeModal}>
+                                <FiX />
+                            </button>
+                            <div className="modal-image-container">
+                                <Image src={modalContent.image || "/placeholder.svg"} alt={modalContent.title} layout="fill" objectFit="cover" />
+                                <button className="nav-button prev" onClick={prevProject}>
+                                    <FiChevronLeft />
+                                </button>
+                                <button className="nav-button next" onClick={nextProject}>
+                                    <FiChevronRight />
+                                </button>
+                            </div>
+                            <div className="modal-content-scroll">
+                                <h2>{modalContent.title}</h2>
+                                <p className="modal-description">{modalContent.modalDescription}</p>
+                                <div className="modal-section">
+                                    <h3>Technologies Used</h3>
+                                    <div className="modal-technologies">
+                                        {modalContent.technologies.map((tech, index) => (
+                                            <span key={index} className="tech-tag">{tech}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="modal-section">
+                                    <h3>Key Features</h3>
+                                    <ul className="feature-list">
+                                        {modalContent.features.map((feature, index) => (
+                                            <li key={index}>{feature}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="modal-section">
+                                    <h3>Challenges</h3>
+                                    <p>{modalContent.challenges}</p>
+                                </div>
+                                <div className="modal-section">
+                                    <h3>Lessons Learned</h3>
+                                    <p>{modalContent.lessons}</p>
+                                </div>
+                                <div className="modal-actions">
+                                    <a href={modalContent.codeLink} className="action-button" target="_blank" rel="noopener noreferrer">
+                                        <FiCode /> View Code
+                                    </a>
+                                    <a href={modalContent.liveLink} className="action-button" target="_blank" rel="noopener noreferrer">
+                                        <FiExternalLink /> View Live
+                                    </a>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </section>
     );
 };
 

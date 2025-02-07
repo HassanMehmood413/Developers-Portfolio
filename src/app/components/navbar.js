@@ -1,58 +1,138 @@
-"use client"; // Ensure this component is marked as a Client Component
+"use client";
 
-
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import hassan from '../images/hassan.png';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import hassan from '../images/hassan.png';
+import '@/app/styles/navbar.css';
+import '@/app/index.css'
+
 
 const Navbar = () => {
-    const Showsidebar = () => {
-        const sidebar = document.querySelector('.fixed-sidebar');
-        sidebar.style.display = 'flex';
-    };
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [activeLink, setActiveLink] = useState('');
+    const pathname = usePathname();
 
-    const closesidebar = () => {
-        const sidebar = document.querySelector('.fixed-sidebar');
-        sidebar.style.display = 'none';
-    };
+    const navLinks = [
+        { href: "/", label: "Home" },
+        { href: "#Experience", label: "Experience" },
+        { href: "#projects", label: "Projects" },
+        { href: "#container_footer", label: "Contact" }
+    ];
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = ['home', 'experience', 'projects', 'container_footer'];
+            let currentActiveSection = '';
+
+            sections.forEach((sectionId) => {
+                const section = document.getElementById(sectionId);
+                if (section && window.scrollY >= section.offsetTop - 100) {
+                    currentActiveSection = sectionId;
+                }
+            });
+
+            setActiveLink(currentActiveSection);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    useEffect(() => {
+        setIsSidebarOpen(false);
+    }, []); // Removed unnecessary pathname dependency
+
+    const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
     return (
         <>
-            <div className="navbar" id='nav'>
+            <motion.nav 
+                className="navbar" 
+                id='nav'
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
+                transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+            >
                 <div className="img">
                     <Image 
-                        src={hassan} 
+                        src={hassan || "/placeholder.svg"} 
                         alt="Hassan Mehmood" 
-                        // width={60} 
-                        // height={60} 
-                        // layout="intrinsic"
+                        width={60} 
+                        height={60}
+                        placeholder="blur"
                     />
-                    <span>Hassan Mehmood</span>
-                </div>
-
-                <div className='fixed-sidebar'>
-                    <ul>
-                        <Link onClick={closesidebar} className='closebar' href="#"><li ><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#00b4d8"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></li></Link>
-                        <li><Link href="/">Home</Link></li>
-                        <li><Link href="#about">About</Link></li>
-                        <li><Link href="#projects">Projects</Link></li>
-                        <li><Link href="/about">Contact</Link></li>
-                    </ul>
+                    <motion.span
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        Hassan Mehmood
+                    </motion.span>
                 </div>
 
                 <div className="options">
-                    <ul>
-                        <li className='hideonmobile'><Link href="/">Home</Link></li>
-                        <li className='hideonmobile'><Link href="#about">About</Link></li>
-                        <li className='hideonmobile'><Link href="#projects">Projects</Link></li>
-                        <li className='hideonmobile'><Link href="/about">Contact</Link></li>
-
-
-
-                        <li className='bar' onClick={Showsidebar}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#00b4d8"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" /></svg></li>
+                    <ul className="hideonmobile">
+                        {navLinks.map((link, index) => (
+                            <motion.li 
+                                key={link.href}
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                            >
+                                <Link 
+                                    href={link.href}
+                                    className={activeLink === link.href.replace('#', '') ? 'active' : ''}
+                                >
+                                    {link.label}
+                                </Link>
+                            </motion.li>
+                        ))}
                     </ul>
+                    <button className='bar' onClick={toggleSidebar} aria-label="Toggle menu">
+                        <FaBars size={24} color="#00b4d8" />
+                    </button>
                 </div>
-            </div>
+            </motion.nav>
+
+            <AnimatePresence>
+                {isSidebarOpen && (
+                    <motion.div 
+                        className='fixed-sidebar'
+                        initial={{ x: '100%' }}
+                        animate={{ x: 0 }}
+                        exit={{ x: '100%' }}
+                        transition={{ type: 'tween', duration: 0.3 }}
+                    >
+                        <ul>
+                            <li>
+                                <button onClick={toggleSidebar} className='closebar' aria-label="Close menu">
+                                    <FaTimes size={30} color="#00b4d8" />
+                                </button>
+                            </li>
+                            {navLinks.map((link, index) => (
+                                <motion.li 
+                                    key={link.href}
+                                    initial={{ opacity: 0, x: 20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                >
+                                    <Link 
+                                        href={link.href}
+                                        onClick={toggleSidebar}
+                                        className={activeLink === link.href.replace('#', '') ? 'active' : ''}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </motion.li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     );
 };

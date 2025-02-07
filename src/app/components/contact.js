@@ -2,7 +2,10 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Menus from "../images/menus.jpg"; // Adjust the path as needed
+import '@/app/index.css'
+
+import Menus from "../images/menus.jpg";
+import '@/app/styles/contact.css' // Adjust the path as needed
 
 const Contact = () => {
   const [status, setStatus] = useState("");
@@ -32,8 +35,7 @@ const Contact = () => {
           setShowModal(true); // Show the modal when the message is sent
         } else {
           setStatus(
-            `Error: ${
-              result.error || "There was an issue sending your message."
+            `Error: ${result.error || "There was an issue sending your message."
             }`
           );
         }
@@ -52,59 +54,70 @@ const Contact = () => {
 
   return (
     <div>
-      <div className="contact" id="contact">
-        <Image
-          src={Menus}
-          alt="Menus"
-        />
-        <p className="contacttitle">Contact Me</p>
-        <div className="contactbottom"></div>
-        <span className="titleheading">
-          Feel free to contact me by submitting the form below and I will get
-          back to you as soon as possible
-        </span>
 
-        <div className="contact__form-container">
-          <form onSubmit={handleSubmit} className="contact__form">
-            <input type="hidden" name="form-name" value="form 1" />
-            <div className="contact__form-field">
-              <label className="contact__form-label" htmlFor="name">Name</label>
-              <input
-                required
-                placeholder="Enter Your Name"
-                type="text"
-                className="contact__form-input"
-                name="name"
-                id="name"
-              />
-            </div>
-            <div className="contact__form-field">
-              <label className="contact__form-label" htmlFor="email">Email</label>
-              <input
-                required
-                placeholder="Enter Your Email"
-                type="email"
-                className="contact__form-input"
-                name="email"
-                id="email"
-              />
-            </div>
-            <div className="contact__form-field">
-              <label className="contact__form-label" htmlFor="message">Message</label>
-              <textarea
-                required
-                cols="30"
-                rows="10"
-                className="contact__form-input"
-                name="message"
-                id="message"
-              ></textarea>
-            </div>
-            <button type="submit" className="btn btn--theme contact__btn">
-              Submit
-            </button>
-          </form>
-          {status && <p>{status}</p>}
+      <div id="container_footer">
+
+
+        <div className="contact" id="contact">
+
+          <p className="contacttitle">CONTACT ME</p>
+          <div className="contactbottom"></div>
+          <span className="titleheading">
+            Feel free to contact me by submitting the form below and I will get
+            back to you as soon as possible
+          </span>
+
+          <div className="contact__form-container">
+            <form onSubmit={handleSubmit} className="contact__form">
+              <input type="hidden" name="form-name" value="form 1" />
+              <div className="contact__form-field">
+                <label className="contact__form-label" htmlFor="name">Name</label>
+                <input
+                  required
+                  placeholder="Enter Your Name"
+                  type="text"
+                  className="contact__form-input"
+                  name="name"
+                  id="name"
+                />
+              </div>
+              <div className="contact__form-field">
+                <label className="contact__form-label" htmlFor="email">Email</label>
+                <input
+                  required
+                  placeholder="Enter Your Email"
+                  type="email"
+                  className="contact__form-input"
+                  name="email"
+                  id="email"
+                />
+              </div>
+              <div className="contact__form-field">
+                <label className="contact__form-label" htmlFor="message">Message</label>
+                <textarea
+                  required
+                  cols="30"
+                  rows="10"
+                  className="contact__form-input"
+                  name="message"
+                  id="message"
+                ></textarea>
+              </div>
+              <button type="submit" className="btn btn--theme contact__btn">
+                Submit
+              </button>
+            </form>
+            {status && <p>{status}</p>}
+          </div>
+        </div>
+        <div id="image_menu">
+
+          <Image
+            src={Menus}
+            alt="Menus"
+            style={{ width: "100%", height: "100%" }}
+          />
+
         </div>
       </div>
 
