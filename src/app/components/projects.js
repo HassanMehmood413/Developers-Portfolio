@@ -9,7 +9,7 @@ import { FiCode, FiExternalLink, FiX, FiChevronLeft, FiChevronRight } from 'reac
 import { useTheme } from 'next-themes';
 import Portfolio from '../images/portfolio.png';
 import spot from '../images/spot.png';
-import Feelbetter from '../images/feelbetter_tmp.png';
+import Feelbetter from '../images/Feelbetter.png';
 
 import malama from "../images/malama.png";
 import spotify from "../images/spotify.png";
