@@ -9,7 +9,7 @@ import { useTheme } from 'next-themes';
 import Portfolio from '../images/portfolio.png';
 import spot from '../images/spot.png';
 import article from '../images/article.jpg';
-import Feelbetter from '../images/Feelbetter.png';
+import Feelbetter from '../images/feelbetter.png';
 import malama from "../images/malama.png";
 import spotify from "../images/spotify.png";
 import '@/app/styles/project.css';
