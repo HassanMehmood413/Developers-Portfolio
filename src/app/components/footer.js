@@ -21,10 +21,7 @@ const Footer = () => {
       <div className="footer__content">
         <div className="footer__info">
           <h2 className="footer__title">Hassan Mehmood</h2>
-          <p className="footer__description">
-            A Frontend focused Web Developer building the Frontend of Websites
-            and Web Applications that leads to the success of the overall product
-          </p>
+          <p className="footer__description">CONSISTENCY | PERSEVERANCE | DEVOTION</p>
           <div className="footer__cta">
             <a href="#contact" className="footer__button">Get In Touch</a>
           </div>
