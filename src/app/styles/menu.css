@@ -129,3 +129,34 @@
   left: 41%;
   top: 77%;
 }
+
+
+@media(max-width:770px) {
+
+  .options ul {
+    display: none;
+  }
+
+  .menutext .menutextp1 {
+    font-size: 1rem;
+  }
+
+  .menutext .menutextp2 {
+    font-size: 1rem;
+    top: 40%;
+
+  }
+
+  .myname {
+    font-size: 2rem;
+    transform: translate(1%, -66%);
+  }
+
+  .navbar {
+    position: fixed;
+    top: 29px;
+    left: 0;
+    right: 0;
+  }
+
+}

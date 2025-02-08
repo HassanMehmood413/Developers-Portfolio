@@ -22,6 +22,9 @@
         display: none;
     }
 
+    .menutext .menutextp1 {
+        font-size: 1rem;
+    }
 
     .menutext .menutextp2 {
         font-size: 1rem;
@@ -41,16 +44,13 @@
         right: 0;
     }
 
-}
-
-
-@media(max-width:770px) {
-
     .social_icons {
         display: none;
     }
 
 }
+
+
 
 @media(max-width:641px) {
 
