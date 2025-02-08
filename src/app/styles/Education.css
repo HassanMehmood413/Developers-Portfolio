@@ -91,7 +91,7 @@
 
 .timeline-content:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .degree {
@@ -146,18 +146,21 @@
     overflow: hidden;
 }
 
-.achievements, .courses {
+.achievements,
+.courses {
     margin-bottom: 1rem;
 }
 
-.achievements h5, .courses h5 {
+.achievements h5,
+.courses h5 {
     display: flex;
     align-items: center;
     color: #2c3e50;
     margin-bottom: 0.5rem;
 }
 
-.achievements h5 .icon, .courses h5 .icon {
+.achievements h5 .icon,
+.courses h5 .icon {
     margin-right: 0.5rem;
     color: #3498db;
 }
@@ -204,29 +207,55 @@
     .timeline::after {
         left: 31px;
     }
-    
+
     .timeline-item {
         width: 100%;
         padding-left: 70px;
         padding-right: 25px;
     }
-    
+
     .timeline-item::after {
         left: 15px;
     }
-    
+
     .timeline-item:nth-child(even) {
         left: 0%;
     }
+}
+
+
+
+@media(max-width:641px) {
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 6px;
+        padding-right: 25px;
+    }
+
+    .timeline-content {
+        padding: 20px 46px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
 }
 
 @keyframes gradientBG {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }

@@ -1,11 +1,11 @@
-"use client"; // Ensure this component is marked as a Client Component
+"use client"; // Mark as a Client Component
 
 import React, { useState } from "react";
 import Image from "next/image";
-import '@/app/index.css'
-
+import "@/app/index.css";
 import Menus from "../images/menus.jpg";
-import '@/app/styles/contact.css' // Adjust the path as needed
+import "@/app/styles/contact.css"; // Adjust the path as needed
+import "@/app/index.css";
 
 const Contact = () => {
   const [status, setStatus] = useState("");
@@ -32,11 +32,10 @@ const Contact = () => {
         const result = await response.json();
         if (result.success) {
           setStatus("Your message has been sent!");
-          setShowModal(true); // Show the modal when the message is sent
+          setShowModal(true);
         } else {
           setStatus(
-            `Error: ${result.error || "There was an issue sending your message."
-            }`
+            `Error: ${result.error || "There was an issue sending your message."}`
           );
         }
       } else {
@@ -54,24 +53,32 @@ const Contact = () => {
 
   return (
     <div>
-
       <div id="container_footer">
+        {/* Background Image */}
+        <div id="image_menu">
+          <Image
+            src={Menus}
+            alt="Menus Background"
+            layout="fill"         // Fill the container
+            objectFit="cover"       // Cover the container area
+            priority              // (Optional) prioritize loading
+          />
+        </div>
 
-
+        {/* Contact Form Overlay */}
         <div className="contact" id="contact">
-
           <p className="contacttitle">CONTACT ME</p>
           <div className="contactbottom"></div>
           <span className="titleheading">
-            Feel free to contact me by submitting the form below and I will get
-            back to you as soon as possible
+            Feel free to contact me by submitting the form below and I will get back to you as soon as possible
           </span>
-
           <div className="contact__form-container">
             <form onSubmit={handleSubmit} className="contact__form">
               <input type="hidden" name="form-name" value="form 1" />
               <div className="contact__form-field">
-                <label className="contact__form-label" htmlFor="name">Name</label>
+                <label className="contact__form-label" htmlFor="name">
+                  Name
+                </label>
                 <input
                   required
                   placeholder="Enter Your Name"
@@ -82,7 +89,9 @@ const Contact = () => {
                 />
               </div>
               <div className="contact__form-field">
-                <label className="contact__form-label" htmlFor="email">Email</label>
+                <label className="contact__form-label" htmlFor="email">
+                  Email
+                </label>
                 <input
                   required
                   placeholder="Enter Your Email"
@@ -93,7 +102,9 @@ const Contact = () => {
                 />
               </div>
               <div className="contact__form-field">
-                <label className="contact__form-label" htmlFor="message">Message</label>
+                <label className="contact__form-label" htmlFor="message">
+                  Message
+                </label>
                 <textarea
                   required
                   cols="30"
@@ -109,15 +120,6 @@ const Contact = () => {
             </form>
             {status && <p>{status}</p>}
           </div>
-        </div>
-        <div id="image_menu">
-
-          <Image
-            src={Menus}
-            alt="Menus"
-            style={{ width: "100%", height: "100%" }}
-          />
-
         </div>
       </div>
 
@@ -141,6 +143,7 @@ const Contact = () => {
       )}
 
       <style jsx>{`
+        /* Modal styles */
         .modal-overlay {
           position: fixed;
           top: 0;
@@ -153,7 +156,6 @@ const Contact = () => {
           align-items: center;
           transition: all 0.3s ease;
         }
-
         .modal-content {
           background-color: white;
           padding: 30px;
@@ -164,7 +166,6 @@ const Contact = () => {
           width: 90%;
           animation: slideDown 0.4s ease;
         }
-
         @keyframes slideDown {
           from {
             transform: translateY(-100px);
@@ -175,21 +176,17 @@ const Contact = () => {
             opacity: 1;
           }
         }
-
         .modal-header h2 {
           font-size: 1.8rem;
           margin-bottom: 10px;
         }
-
         .modal-body p {
           font-size: 1.2rem;
           color: #333;
         }
-
         .modal-footer {
           margin-top: 20px;
         }
-
         .modal-close-btn {
           background-color: #0070f3;
           color: white;
@@ -199,7 +196,6 @@ const Contact = () => {
           cursor: pointer;
           transition: background-color 0.3s ease;
         }
-
         .modal-close-btn:hover {
           background-color: #005bb5;
         }

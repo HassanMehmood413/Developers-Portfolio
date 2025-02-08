@@ -8,7 +8,7 @@
 
 /* Background Menu images */
 .backgroundimage .image img {
-  height: 1000px;
+  height: 1200px;
   width: 100%;
   position: relative;
   opacity: 0.8;
@@ -23,9 +23,10 @@
 
 .menuwrite {
   position: absolute;
-  top: 45%;
-  left: 29%;
-  transform: translate(-17%, -145%);
+  /* top: 45%; */
+  margin: 0 auto;
+  /* left: 29%; */
+  transform: translate(1%, -151%);
   text-align: center;
 }
 
@@ -35,7 +36,8 @@
   font-size: 3rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-  width: 134%;
+  width: 100%;
+  /* margin-left: 11rem; */
   text-align: center;
   color: #111;
   font-weight: 800;
@@ -45,6 +47,8 @@
 .menutext .menutextp1 {
   position: absolute;
   left: 50%;
+  top: 44%;
+  right: 50%;
   color: #333;
   transform: translateX(-50%);
   font-family: "Source Sans 3", sans-serif;
@@ -52,8 +56,7 @@
   text-align: center;
   width: 73%;
   line-height: 1.6;
-  margin-top: -54px;
-
+  margin: 0px auto;
 }
 
 .menutext .menutextp1 span {
@@ -63,25 +66,30 @@
 
 .menutext .menutextp2 {
   position: absolute;
-  left: 22%;
+  left: 0%;
+  right: 0;
   color: #333;
   font-family: "Source Sans 3", sans-serif;
   font-size: 1.8rem;
   text-align: center;
   width: 56%;
   line-height: 1.6;
-  margin-top: -125px;
+  margin: 0 auto;
+  top: 38%;
 }
 
 .menuButton {
   position: absolute;
   margin-top: 32%;
   display: flex;
-  /* Use flexbox to make the content expand properly */
+  top: 50%;
   align-items: center;
-  /* Center the text vertically */
+  margin: 0 auto;
   justify-content: center;
+  left: 50%;
   font-family: "Source Sans 3", sans-serif;
+  right: 50%;
+  bottom: 0%;
 }
 
 .menuButton button {

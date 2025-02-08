@@ -9,27 +9,28 @@
 }
 
 .navbar {
-    position: fixed;
-    top: 24px;
-    left: 20px;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--background-color);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0px 22px 46px rgb(206 199 199);
-    width: 93%;
-    border-radius: 77px;
-    z-index: 1000;
-    padding: 0.5rem 2rem;
-    transition: all 0.3sease;
+  position: fixed;
+  top: 24px;
+  left: 25px;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--background-color);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: -1px 22px 46px rgb(206 199 199);
+  width: 97%;
+  border-radius: 77px;
+  z-index: 1000;
+  padding: 13px 0px;
+  transition: all 0.3sease;
 }
 
 .navbar .img {
   display: flex;
   align-items: center;
+  margin-left: 23px;
 }
 
 .navbar .img span {
@@ -59,6 +60,7 @@
 
 .options {
   display: flex;
+  margin-right: 23px;
   align-items: center;
 }
 
@@ -195,6 +197,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -204,4 +207,3 @@
 .fixed-sidebar {
   animation: fadeIn 0.5s ease-out;
 }
-

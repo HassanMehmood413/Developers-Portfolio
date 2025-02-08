@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaGraduationCap, FaCalendar, FaMapMarkerAlt, FaCertificate, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import '@/app/styles/Education.css';
 
+import "@/app/index.css";
+
 const Education = () => {
     const [expandedId, setExpandedId] = useState(null);
 
@@ -15,7 +17,7 @@ const Education = () => {
             institution: "University Of Agriculture Faisalabad",
             location: "Faisalabad",
             period: "2023 - 2027",
-            description:"Pursuing a Bachelor's degree in Software Engineering from University of Agriculture Faisalabad. Enhancing my skills in Agentic AI, AI/ML and Data Structures And Algorithms."
+            description: "Pursuing a Bachelor's degree in Software Engineering from University of Agriculture Faisalabad. Enhancing my skills in Agentic AI, AI/ML and Data Structures And Algorithms."
         },
         {
             id: 2,
