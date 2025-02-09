@@ -68,12 +68,11 @@ const Projects = () => {
             liveLink: 'https://hassanmehmood0.vercel.app/',
             features: [
                 'Fully responsive design for seamless viewing on all devices',
-                'Dark mode with smooth transitions and user preference storage',
                 'Dedicated project showcase with live previews and source code links',
                 'Interactive contact form with validation and email integration',
                 'Optimized performance with Next.js features like dynamic routing and image optimization'
             ],
-            challenges: 'One of the main challenges was implementing a smooth and visually appealing dark mode transition while ensuring it worked consistently across different browsers and devices. Additionally, optimizing performance and maintaining a clean, modular codebase in Next.js required strategic planning.',
+            challenges: 'One of the main challenges was implementing a smooth and visually appealing transition while ensuring it worked consistently across different browsers and devices. Additionally, optimizing performance and maintaining a clean, modular codebase in Next.js required strategic planning.',
             lessons: 'Through this project, I deepened my understanding of Next.js and its features, such as server-side rendering (SSR) and static site generation (SSG). I also improved my skills in advanced CSS techniques, including animations and theme toggling, to create an engaging user experience. Moreover, I learned best practices for structuring a scalable and maintainable web application.'
         },
         {
