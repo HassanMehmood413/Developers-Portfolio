@@ -83,7 +83,7 @@ const Projects = () => {
             technologies: ['Next.js', 'FastAPI', 'PostgreSQL', 'SerperAPI', 'IPINFO'],
             modalDescription: 'SpotConnect enables users to report network issues like slow speeds and outages in real time. Using AI and geolocation, it alerts ISPs, local authorities, and technical teams for faster resolution. Users also receive live updates on connectivity in their area.',
             codeLink: 'https://github.com/HassanMehmood413/SPOT-CONNECT',
-            liveLink: 'https://yourblogwebsite.com',
+            liveLink: 'https://spotconnect-two.vercel.app/',
             features: [
                 'Real-time issue reporting',
                 'AI-driven analytics',
