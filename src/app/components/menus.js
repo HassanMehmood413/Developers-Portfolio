@@ -38,7 +38,7 @@ const Section1 = () => {
     const handleDownload = () => {
         const link = document.createElement("a");
         link.href =
-            "https://drive.google.com/file/d/1zHp2yvoga2i453E5CDjTeS_Kl7mBK1eL/view?usp=sharing"; // CV file link
+            "https://drive.google.com/file/d/12pkYVOJeklrKmJPzOCCUwZOQXeTWZqje/view"; // CV file link
         link.download = "My_CV.pdf";
         link.click();
     };
