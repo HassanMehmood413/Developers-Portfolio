@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // src/app/page.js
 // import React from 'react';
 import LoadingScreen from './components/LoadingScreen';
-import Menus from '../app/components/Menus';
+import Menus from '../app/components/menus.js';
 import About from './components/about.js';
 import Projects from './components/projects.js';
 import Contact from './components/contact.js';
