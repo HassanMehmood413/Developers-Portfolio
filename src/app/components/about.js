@@ -6,6 +6,7 @@ import { SiOpenai, SiGithubsponsors, SiDevpost, SiMlb } from 'react-icons/si';
 import { TbBulb, TbArrowBigRightLinesFilled, TbCircleCheckFilled, TbWorldSearch } from 'react-icons/tb';
 import { PiSparkleDuotone, PiPuzzlePieceDuotone, PiStackDuotone, PiPlanetDuotone } from 'react-icons/pi';
 import { LuThermometerSnowflake, LuBrainCircuit, LuBraces, LuBookOpen } from 'react-icons/lu';
+import Image from 'next/image';
 import '@/app/styles/About.css';
 
 const Experience = () => {
@@ -75,16 +76,16 @@ const Experience = () => {
     // Animation variants
     const sectionVariants = {
         hidden: { opacity: 0 },
-        visible: { 
+        visible: {
             opacity: 1,
             transition: { staggerChildren: 0.3 }
         }
     };
-    
+
     const titleVariants = {
         hidden: { opacity: 0, x: -100 },
-        visible: { 
-            opacity: 1, 
+        visible: {
+            opacity: 1,
             x: 0,
             transition: { duration: 0.8, ease: "easeOut" }
         }
@@ -97,7 +98,7 @@ const Experience = () => {
         const direction = latest > prevScrollY.current ? 'down' : 'up';
         prevScrollY.current = latest;
         setScrollDirection(direction);
-        
+
         // Change color scheme based on scroll position
         if (Math.abs(latest - prevScrollY.current) > 50) {
             setActiveColorScheme((prev) => (prev + 1) % colorSchemes.length);
@@ -107,6 +108,8 @@ const Experience = () => {
 
     // Intersection observer setup
     useEffect(() => {
+        const cards = cardsRef.current; // ← Save a stable reference
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
@@ -120,16 +123,17 @@ const Experience = () => {
             { threshold: 0.2 }
         );
 
-        cardsRef.current.forEach(card => {
+        cards.forEach(card => {
             if (card) observer.observe(card);
         });
 
         return () => {
-            cardsRef.current.forEach(card => {
+            cards.forEach(card => {
                 if (card) observer.unobserve(card);
             });
         };
     }, []);
+
 
     const toggleExpand = (index) => {
         setExpandedCard(expandedCard === index ? null : index);
@@ -151,18 +155,18 @@ const Experience = () => {
             animate="visible"
             variants={sectionVariants}
         >
-            <motion.div 
+            <motion.div
                 className="orbital-background"
-                animate={{ 
-                    rotate: [0, 360], 
-                    scale: [1, 1.05, 1] 
+                animate={{
+                    rotate: [0, 360],
+                    scale: [1, 1.05, 1]
                 }}
-                transition={{ 
+                transition={{
                     rotate: { duration: 40, ease: "linear", repeat: Infinity },
                     scale: { duration: 8, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }
                 }}
             />
-            
+
             <div className="neo-container">
                 <motion.div className="title-container" variants={titleVariants}>
                     <div className="icon-trail">
@@ -172,12 +176,12 @@ const Experience = () => {
                     </div>
                     <h2 className="neo-section-title">Experience Journey</h2>
                 </motion.div>
-                
+
                 <div className="experience-hexagon-grid">
                     {experiences.map((exp, index) => {
                         const isEven = index % 2 === 0;
                         const isVisible = visibleElements.includes(String(index));
-                        
+
                         return (
                             <motion.div
                                 key={exp.company}
@@ -188,21 +192,21 @@ const Experience = () => {
                                     '--card-color': exp.color,
                                 }}
                                 initial={{ opacity: 0, y: 50 }}
-                                animate={isVisible ? { 
-                                    opacity: 1, 
+                                animate={isVisible ? {
+                                    opacity: 1,
                                     y: 0,
                                     transition: { duration: 0.7, ease: "backOut" }
                                 } : {}}
                                 onClick={() => toggleExpand(index)}
                             >
                                 <div className="card-pulse" style={{ backgroundColor: exp.color }} />
-                                
+
                                 <div className="card-content">
                                     <div className="icon-cluster">
                                         <exp.MainIcon className="main-icon" />
                                         <exp.SecIcon className="secondary-icon" />
                                     </div>
-                                    
+
                                     <div className="card-header">
                                         <span className="time-period">{exp.period}</span>
                                         <h3 className="company-title">{exp.company}</h3>
@@ -211,10 +215,10 @@ const Experience = () => {
                                             <span>{exp.role}</span>
                                         </div>
                                     </div>
-                                    
+
                                     <AnimatePresence>
                                         {expandedCard === index && (
-                                            <motion.div 
+                                            <motion.div
                                                 className="expandable-details"
                                                 initial={{ height: 0, opacity: 0 }}
                                                 animate={{ height: 'auto', opacity: 1 }}
@@ -222,10 +226,10 @@ const Experience = () => {
                                                 transition={{ duration: 0.4, ease: "easeInOut" }}
                                             >
                                                 <p className="exp-description">{exp.description}</p>
-                                                
-                                                <a 
-                                                    href={exp.link} 
-                                                    target="_blank" 
+
+                                                <a
+                                                    href={exp.link}
+                                                    target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="neo-link"
                                                     onClick={(e) => e.stopPropagation()}
@@ -236,22 +240,22 @@ const Experience = () => {
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
-                                    
+
                                     {expandedCard !== index && (
                                         <div className="card-teaser">
                                             <p>{exp.description.split('\n')[0].substring(0, 70)}...</p>
                                         </div>
                                     )}
                                 </div>
-                                
+
                                 <div className="card-indicator">
-                                    <motion.div 
+                                    <motion.div
                                         className="indicator-dot"
-                                        animate={{ 
+                                        animate={{
                                             scale: [1, 1.2, 1],
                                             opacity: [0.7, 1, 0.7]
                                         }}
-                                        transition={{ 
+                                        transition={{
                                             duration: 2,
                                             repeat: Infinity,
                                             repeatType: "reverse"

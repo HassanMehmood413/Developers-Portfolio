@@ -136,21 +136,18 @@ const Achievements = () => {
                                 className={`achievement-card ${index === activeAchievement ? 'active' : ''}`}
                                 onClick={() => setActiveAchievement(index)}
                             >
+
                                 <div className="achievement-icon">
-                                    <object
-                                        data={achievement.icon}
-                                        type="image/svg+xml"
+                                    <Image
+                                        src={achievement.icon}
+                                        alt={`${achievement.title} icon`}
+                                        width={50}
+                                        height={50}
                                         className="custom-icon"
-                                        aria-label={`${achievement.title} icon`}
-                                    >
-                                        <img
-                                            src="/api/placeholder/50/50"
-                                            alt="Achievement icon"
-                                            width={50}
-                                            height={50}
-                                        />
-                                    </object>
+                                        unoptimized // Optional if you're using external image URLs (e.g. from CDN)
+                                    />
                                 </div>
+
                                 <div className="achievement-content">
                                     <h3 className="achievement-title">{achievement.title}</h3>
                                     <div className="achievement-meta">
@@ -200,9 +197,9 @@ const Achievements = () => {
                     <button
                         className="cta-button" onClick={() => window.open("https://www.linkedin.com/in/hassan-mehmood-01a3a9247/", '_blank', 'noopener,noreferrer')}
                     > Click Here
-                </button>
+                    </button>
+                </div>
             </div>
-        </div>
         </section >
     );
 };

@@ -15,10 +15,6 @@ import dynamic from "next/dynamic"
 import { Suspense } from "react"
 import Achievements from './components/achievements.js';
 
-const UltimateSkillsSection = dynamic(() => import("./components/skills"), {
-  ssr: false,
-  loading: () => <div>Loading...</div>,
-})
 
 export default function Home() {
   return (

@@ -138,7 +138,7 @@ const Contact = () => {
             <div className="modal-body">
               <div className="success-icon">✓</div>
               <p>Your message has been successfully sent.</p>
-              <p className="modal-subtitle">I'll get back to you as soon as possible!</p>
+              <p className="modal-subtitle">I will get back to you as soon as possible!</p>
             </div>
             <div className="modal-footer">
               <button onClick={handleCloseModal} className="modal-close-btn">
