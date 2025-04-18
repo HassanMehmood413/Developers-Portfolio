@@ -13,7 +13,7 @@ import Leetcode from "../images/leetcode.svg";
 import "@/app/styles/menu.css";
 import "@/app/index.css";
 
-const Section1 = () => {
+const Menus = () => {
     const lottieRef = useRef(null);
 
     useEffect(() => {
@@ -163,4 +163,4 @@ const Section1 = () => {
     );
 };
 
-export default Section1;
+export default Menus;
