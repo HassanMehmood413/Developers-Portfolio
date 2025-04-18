@@ -8,12 +8,12 @@ import About from './components/about.js';
 import Projects from './components/projects.js';
 import Contact from './components/contact.js';
 // import Footer from './components/Footer';
-import Education from './components/education.js';
+import Education from '../app/components/Education';
 // import Skills from './components/Skills';
 import 'regenerator-runtime/runtime';
 import dynamic from "next/dynamic"
 import { Suspense } from "react"
-import Achievements from './components/achievements.js';
+import Achievements from '../app/components/Achievements';
 
 
 export default function Home() {
