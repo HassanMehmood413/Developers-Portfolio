@@ -3,19 +3,19 @@ import React, { useState, useEffect } from 'react';
 // src/app/page.js
 // import React from 'react';
 import LoadingScreen from './components/LoadingScreen';
-import Menus from './components/Menus.js';
-import About from './components/About.js';
-import Projects from './components/Projects.js';
-import Contact from './components/Contact.js';
+import Menus from '../app/components/Menus';
+import About from './components/about.js';
+import Projects from './components/projects.js';
+import Contact from './components/contact.js';
 // import Footer from './components/Footer';
-import Education from './components/Education.js';
+import Education from './components/education.js';
 // import Skills from './components/Skills';
 import 'regenerator-runtime/runtime';
 import dynamic from "next/dynamic"
 import { Suspense } from "react"
-import Achievements from './components/Achievements.js';
+import Achievements from './components/achievements.js';
 
-const UltimateSkillsSection = dynamic(() => import("../app/components/Skills"), {
+const UltimateSkillsSection = dynamic(() => import("./components/skills"), {
   ssr: false,
   loading: () => <div>Loading...</div>,
 })
