@@ -151,10 +151,10 @@ body {
 .social_icons {
   background-color: grey;
   position: absolute;
-  height: 20%;
+  height: 27%;
   position: absolute;
-  top: 52%;
-  left: 0;
+  top: 57%;
+  left: 0px;
   transform: translateY(-57%);
   background: #fff;
   box-shadow: rgb(132 132 132 / 68%) 0px 7px 29px 0px;

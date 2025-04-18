@@ -2,9 +2,9 @@
 
 import './globals.css'; // Import global styles
 import '../app/index.css'; // Import page-specific styles if needed
-import Navbar from '../app/components/navbar'; // Adjust path as needed
+import Navbar from './components/Navbar'; // Adjust path as needed
 import f from '../app/images/letterh.png'; // Adjusted path to your image
-import Footer from "@/app/components/footer"
+import Footer from "@/app/components/Footer"
 
 export default function RootLayout({ children }) {
   return (

@@ -8,7 +8,7 @@
 
 /* Background Menu images */
 .backgroundimage .image img {
-  height: 1200px;
+  height: 900px;
   width: 100%;
   position: relative;
   opacity: 0.8;
@@ -23,7 +23,7 @@
 
 .menuwrite {
   position: absolute;
-  /* top: 45%; */
+  top: 40%;
   margin: 0 auto;
   /* left: 29%; */
   transform: translate(1%, -151%);
@@ -33,7 +33,7 @@
 
 .myname {
   font-family: "Source Sans 3", sans-serif;
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-transform: uppercase;
   letter-spacing: 3px;
   width: 100%;
@@ -52,7 +52,7 @@
   color: #333;
   transform: translateX(-50%);
   font-family: "Source Sans 3", sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   text-align: center;
   width: 73%;
   line-height: 1.6;
@@ -70,12 +70,12 @@
   right: 0;
   color: #333;
   font-family: "Source Sans 3", sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   text-align: center;
   width: 56%;
   line-height: 1.6;
   margin: 0 auto;
-  top: 38%;
+  top: 35%;
 }
 
 .menuButton {

@@ -1,10 +1,9 @@
-"use client"; // Mark as a Client Component
+"use client";
 
 import React, { useState } from "react";
 import Image from "next/image";
-import "@/app/index.css";
 import Menus from "../images/menus.jpg";
-import "@/app/styles/contact.css"; // Adjust the path as needed
+import "../styles/contact.css";
 import "@/app/index.css";
 
 const Contact = () => {
@@ -33,6 +32,8 @@ const Contact = () => {
         if (result.success) {
           setStatus("Your message has been sent!");
           setShowModal(true);
+          // Reset form
+          event.target.reset();
         } else {
           setStatus(
             `Error: ${result.error || "There was an issue sending your message."}`
@@ -52,86 +53,92 @@ const Contact = () => {
   };
 
   return (
-    <div>
-      <div id="container_footer">
-        {/* Background Image */}
-        <div id="image_menu">
+    <div className="contact-page-wrapper">
+      {/* Background Container */}
+      <div className="contact-background">
+        <div className="image-container">
           <Image
             src={Menus}
-            alt="Menus Background"
-            layout="fill"         // Fill the container
-            objectFit="cover"       // Cover the container area
-            priority              // (Optional) prioritize loading
+            alt="Background Image"
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
+            className="background-image"
           />
-        </div>
-
-        {/* Contact Form Overlay */}
-        <div className="contact" id="contact">
-          <p className="contacttitle">CONTACT ME</p>
-          <div className="contactbottom"></div>
-          <span className="titleheading">
-            Feel free to contact me by submitting the form below and I will get back to you as soon as possible
-          </span>
-          <div className="contact__form-container">
-            <form onSubmit={handleSubmit} className="contact__form">
-              <input type="hidden" name="form-name" value="form 1" />
-              <div className="contact__form-field">
-                <label className="contact__form-label" htmlFor="name">
-                  Name
-                </label>
-                <input
-                  required
-                  placeholder="Enter Your Name"
-                  type="text"
-                  className="contact__form-input"
-                  name="name"
-                  id="name"
-                />
-              </div>
-              <div className="contact__form-field">
-                <label className="contact__form-label" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  required
-                  placeholder="Enter Your Email"
-                  type="email"
-                  className="contact__form-input"
-                  name="email"
-                  id="email"
-                />
-              </div>
-              <div className="contact__form-field">
-                <label className="contact__form-label" htmlFor="message">
-                  Message
-                </label>
-                <textarea
-                  required
-                  cols="30"
-                  rows="10"
-                  className="contact__form-input"
-                  name="message"
-                  id="message"
-                ></textarea>
-              </div>
-              <button type="submit" className="btn btn--theme contact__btn">
-                Submit
-              </button>
-            </form>
-            {status && <p>{status}</p>}
-          </div>
+          <div className="overlay"></div>
         </div>
       </div>
 
-      {/* Modal for success message */}
+      {/* Contact Form Content */}
+      <div className="contact-content" id="contact">
+        <div className="contact-header">
+          <h1 className="contact-title">CONTACT ME</h1>
+          <div className="contact-divider"></div>
+          <p className="contact-subtitle">
+            Feel free to contact me by submitting the form below and I will get back to you as soon as possible
+          </p>
+        </div>
+
+        <div className="contact-form-container">
+          <form onSubmit={handleSubmit} className="contact-form">
+            <input type="hidden" name="form-name" value="form 1" />
+            
+            <div className="form-field">
+              <label htmlFor="name">Name</label>
+              <input
+                required
+                placeholder="Enter Your Name"
+                type="text"
+                name="name"
+                id="name"
+              />
+            </div>
+            
+            <div className="form-field">
+              <label htmlFor="email">Email</label>
+              <input
+                required
+                placeholder="Enter Your Email"
+                type="email"
+                name="email"
+                id="email"
+              />
+            </div>
+            
+            <div className="form-field">
+              <label htmlFor="message">Message</label>
+              <textarea
+                required
+                placeholder="Type your message here..."
+                rows="6"
+                name="message"
+                id="message"
+              ></textarea>
+            </div>
+            
+            <div className="form-submit">
+              <button type="submit" className="submit-button">
+                Send Message
+              </button>
+            </div>
+            
+            {status && <p className="form-status">{status}</p>}
+          </form>
+        </div>
+      </div>
+
+      {/* Success Modal */}
       {showModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="modal-overlay" onClick={handleCloseModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Thank You!</h2>
             </div>
             <div className="modal-body">
+              <div className="success-icon">✓</div>
               <p>Your message has been successfully sent.</p>
+              <p className="modal-subtitle">I'll get back to you as soon as possible!</p>
             </div>
             <div className="modal-footer">
               <button onClick={handleCloseModal} className="modal-close-btn">
@@ -141,65 +148,6 @@ const Contact = () => {
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        /* Modal styles */
-        .modal-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.8);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transition: all 0.3s ease;
-        }
-        .modal-content {
-          background-color: white;
-          padding: 30px;
-          border-radius: 12px;
-          text-align: center;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          max-width: 400px;
-          width: 90%;
-          animation: slideDown 0.4s ease;
-        }
-        @keyframes slideDown {
-          from {
-            transform: translateY(-100px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-        .modal-header h2 {
-          font-size: 1.8rem;
-          margin-bottom: 10px;
-        }
-        .modal-body p {
-          font-size: 1.2rem;
-          color: #333;
-        }
-        .modal-footer {
-          margin-top: 20px;
-        }
-        .modal-close-btn {
-          background-color: #0070f3;
-          color: white;
-          padding: 10px 25px;
-          border: none;
-          border-radius: 50px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-        }
-        .modal-close-btn:hover {
-          background-color: #005bb5;
-        }
-      `}</style>
     </div>
   );
 };
